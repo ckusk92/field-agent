@@ -33,6 +33,12 @@
         - [ ] test
     - [ ] delete
         - [ ] test
+- [ ] HTTP
+    - [ ] findAll
+    - [ ] findById
+    - [ ] add
+    - [ ] update
+    - [ ] delete        
 
 ### Aliases
 - [ ] Repository
@@ -66,6 +72,12 @@
         - [ ] test
     - [ ] delete
         - [ ] test
+- [ ] HTTP
+    - [ ] findAll
+    - [ ] findById
+    - [ ] add
+    - [ ] update
+    - [ ] delete 
 
 ### Global Error Handling
 - [ ] Create GlobalExceptionHandler class

@@ -18,6 +18,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -126,5 +127,27 @@ public class SecurityClearanceControllerTest {
 
         mvc.perform(request)
                 .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void shouldUpdate() throws Exception {
+
+        SecurityClearance in = new SecurityClearance(1, "Secret");
+        SecurityClearance expected = new SecurityClearance(1, "Really Really Secret");
+
+        when(repository.update(any())).thenReturn(true);
+
+        ObjectMapper jsonMapper = new ObjectMapper();
+        String jsonIn = jsonMapper.writeValueAsString(in);
+        String expectedJson = jsonMapper.writeValueAsString(expected);
+
+        var request = put("/api/securityclearance/1")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(jsonIn);
+
+        mvc.perform(request)
+                //.andExpect(status().isCreated())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(content().json(expectedJson));
     }
 }

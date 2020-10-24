@@ -87,7 +87,7 @@ create table mission_agent (
 );
 
 create table alias (
-    alias_id int not null,
+    alias_id int primary key auto_increment,
     `name` varchar(125) not null,
     persona varchar(2048) null,
     agent_id int not null,
