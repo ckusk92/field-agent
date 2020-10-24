@@ -10,22 +10,25 @@
         - [x] test
     - [x] delete
         - [x] test
-- [ ] Domain
+- [x] Domain
     - [x] findAll
         - [x] test
-    - [ ] add
-        - [ ] test
-    - [ ] update
-        - [ ] Need to update all instances in agency_agent
-        - [ ] test
-    - [ ] delete
+    - [x] findById
+        - [x] test         
+    - [x] add
+        - [x] test
+    - [x] update
+        - [x] test
+    - [x] delete
         - Ensure security clearance isn't references anymore to allow deletion (used in agency_agent table)
-    - [ ] test
+    - [x] test
 - [ ] Controller
-    - [ ] findAll
-        - [ ] test
-    - [ ] add
-        - [ ] test
+    - [x] findAll
+        - [x] test
+    - [x] findById
+        - [x] test         
+    - [x] add
+        - [x] test
     - [ ] update
         - [ ] test
     - [ ] delete
@@ -51,8 +54,7 @@
     - [ ] update
         - [ ] test
     - [ ] delete
-        - 
-    - [ ] test
+        - [ ] test
 - [ ] Controller
     - [ ] findAll
         - [ ] test
@@ -71,6 +73,7 @@
     - [ ] DataAccessException (more specific?)
     - [ ] IllegalArgumentException
     - [ ] Exception (last resort)
+    - JSON Processing Exception
     - [ ] try to find any others that may occur
     
 ### Stretch

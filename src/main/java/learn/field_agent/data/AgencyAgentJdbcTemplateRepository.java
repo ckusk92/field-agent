@@ -18,9 +18,12 @@ public class AgencyAgentJdbcTemplateRepository implements AgencyAgentRepository 
 
     @Override
     public List<AgencyAgent> findAll() {
+        final String sql = "select aa.agency_id, aa.agent_id, aa.identifier, aa.security_clearance_id, aa.activation_date, aa.is_active, " +
+                "sc.name security_clearance_name, a.first_name, a.middle_name, a.last_name, a.dob, a.height_in_inches " +
+                "from agency_agent aa " +
+                "join security_clearance sc on sc.security_clearance_id = aa.security_clearance_id " +
+                "join agent a on a.agent_id = aa.agent_id;";
 
-        final String sql = "select agency_id, agent_id, identifier, security_clearance_id, activation_date, is_active" +
-                " from agency_agent;";
         return jdbcTemplate.query(sql, new AgencyAgentMapper());
     }
 

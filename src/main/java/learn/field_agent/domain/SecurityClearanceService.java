@@ -50,7 +50,7 @@ public class SecurityClearanceService {
             return result;
         }
 
-        if (securityClearance.getSecurityClearanceId() != 0) {
+        if (securityClearance.getSecurityClearanceId() <= 0) {
             result.addMessage("securityClearanceId must be set for `update` operation", ResultType.INVALID);
             return result;
         }
@@ -65,8 +65,27 @@ public class SecurityClearanceService {
 
     public Result<SecurityClearance> deleteById(int securityClearanceId) {
 
+        Result<SecurityClearance> result = new Result<>();
+        SecurityClearance deletedClearance = findById(securityClearanceId);
+        if(deletedClearance == null) {
+            result.addMessage("Security Clearance not found", ResultType.NOT_FOUND);
+            return result;
+        }
 
-        //List<AgencyAgent> allAgencyAgent = agencyAgentRepository.findAll();
+        List<AgencyAgent> allAgencyAgents = agencyAgentRepository.findAll();
+
+        for(AgencyAgent iterator : allAgencyAgents) {
+            if(iterator.getSecurityClearance().getSecurityClearanceId() == securityClearanceId) {
+                result.addMessage("Cannot delete security clearance being used by agent in agencyAgent", ResultType.INVALID);
+                return result;
+            }
+        }
+
+        if(securityClearanceRepository.deleteById(securityClearanceId)) {
+            result.setPayload(deletedClearance);
+            result.addMessage("Security Clearance deleted", ResultType.SUCCESS);
+            return result;
+        }
 
         return null;
     }

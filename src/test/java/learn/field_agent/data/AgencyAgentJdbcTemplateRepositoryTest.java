@@ -32,7 +32,7 @@ class AgencyAgentJdbcTemplateRepositoryTest {
     void shouldFindNone() {
         List<AgencyAgent> all = repository.findAll();
         assertNotNull(all);
-        assertEquals(0, all.size());
+        assertEquals(12, all.size());
     }
 
     @Test
