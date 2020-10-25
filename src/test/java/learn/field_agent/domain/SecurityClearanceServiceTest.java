@@ -150,7 +150,7 @@ public class SecurityClearanceServiceTest {
     }
 
     @Test
-    void shouldNoDeletetNonExisting() {
+    void shouldNoTDeleteNonExisting() {
         when(repository.deleteById(1000)).thenReturn(false);
         Result<SecurityClearance> result = service.deleteById(1000);
         assertEquals(ResultType.NOT_FOUND, result.getType());
