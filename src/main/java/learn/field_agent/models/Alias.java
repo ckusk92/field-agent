@@ -1,29 +1,31 @@
 package learn.field_agent.models;
 
+import java.util.Objects;
+
 public class Alias {
 
-    private int alias_id;
+    private int aliasId;
     private String name;
     private String persona;
-    private int agent_id;
+    private int agentId;
 
     public Alias() {
 
     }
 
-    public Alias(int alias_id, String name, String persona, int agent_id) {
-        this.alias_id = alias_id;
+    public Alias(int aliasId, String name, String persona, int agentId) {
+        this.aliasId = aliasId;
         this.name = name;
         this.persona = persona;
-        this.agent_id = agent_id;
+        this.agentId = agentId;
     }
 
-    public int getAlias_id() {
-        return alias_id;
+    public int getAliasId() {
+        return aliasId;
     }
 
-    public void setAlias_id(int alias_id) {
-        this.alias_id = alias_id;
+    public void setAliasId(int aliasId) {
+        this.aliasId = aliasId;
     }
 
     public String getName() {
@@ -42,11 +44,23 @@ public class Alias {
         this.persona = persona;
     }
 
-    public int getAgent_id() {
-        return agent_id;
+    public int getAgentId() {
+        return agentId;
     }
 
-    public void setAgent_id(int agent_id) {
-        this.agent_id = agent_id;
+    public void setAgentId(int agentId) {
+        this.agentId = agentId;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Alias that = (Alias) o;
+        return aliasId == that.aliasId &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(persona, that.persona) &&
+                agentId == that.agentId;
     }
 }

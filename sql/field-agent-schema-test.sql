@@ -113,7 +113,7 @@ begin
     alter table security_clearance auto_increment = 1;
 
     -- data
-    insert into security_clearance (security_clearance, `name`) values
+    insert into security_clearance (security_clearance_id, `name`) values
     	(1, 'Secret'),
         (2, 'Top Secret');
 
