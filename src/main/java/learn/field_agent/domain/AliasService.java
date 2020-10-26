@@ -68,14 +68,13 @@ public class AliasService {
     private Result<Alias> validate(Alias alias) {
 
         Result<Alias> result = new Result<>();
-
         if(alias == null) {
             result.addMessage("Alias cannot be null", ResultType.INVALID);
             return result;
         }
 
         for(Alias iteratedAlias : findAll()) {
-            if(alias.getName() == iteratedAlias.getName()
+            if(alias.getName().equalsIgnoreCase(iteratedAlias.getName())
                     && alias != iteratedAlias) {
                 if(Validations.isNullOrBlank(alias.getPersona())) {
                     result.addMessage("Alias persona is required if names match", ResultType.INVALID);

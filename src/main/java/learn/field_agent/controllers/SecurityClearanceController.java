@@ -40,7 +40,7 @@ public class SecurityClearanceController {
     }
 
     @PutMapping("/{securityClearanceId}")
-    public ResponseEntity<Object> update(@PathVariable int securityClearanceId, SecurityClearance securityClearance) {
+    public ResponseEntity<Object> update(@PathVariable int securityClearanceId, @RequestBody SecurityClearance securityClearance) {
         if(securityClearanceId != securityClearance.getSecurityClearanceId()) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
@@ -55,7 +55,7 @@ public class SecurityClearanceController {
     @DeleteMapping("/{securityClearanceId}")
     public ResponseEntity<Void> deleteById(@PathVariable int securityClearanceId) {
         if(service.deleteById(securityClearanceId).isSuccess()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }

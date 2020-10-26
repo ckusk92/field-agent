@@ -50,7 +50,7 @@ public class AliasController {
     }
 
     @PutMapping("/{aliasId}")
-    public ResponseEntity<Object> update(@PathVariable int aliasId, Alias alias) {
+    public ResponseEntity<Object> update(@PathVariable int aliasId, @RequestBody Alias alias) {
         if(aliasId != alias.getAliasId()) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }

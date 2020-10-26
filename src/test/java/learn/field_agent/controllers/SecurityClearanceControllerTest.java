@@ -19,6 +19,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -129,25 +130,37 @@ public class SecurityClearanceControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
+    // STILL NOT WORKING
     @Test
     void shouldUpdate() throws Exception {
 
-        SecurityClearance in = new SecurityClearance(1, "Secret");
+        //SecurityClearance in = new SecurityClearance(1, "Secret");
         SecurityClearance expected = new SecurityClearance(1, "Really Really Secret");
 
         when(repository.update(any())).thenReturn(true);
 
         ObjectMapper jsonMapper = new ObjectMapper();
-        String jsonIn = jsonMapper.writeValueAsString(in);
+        //String jsonIn = jsonMapper.writeValueAsString(in);
         String expectedJson = jsonMapper.writeValueAsString(expected);
 
         var request = put("/api/securityclearance/1")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(jsonIn);
+                .content(expectedJson);
 
         mvc.perform(request)
                 //.andExpect(status().isCreated())
+                .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(content().json(expectedJson));
+    }
+
+    @Test
+    void shouldDelete() throws Exception {
+        when(repository.deleteById(2)).thenReturn(true);
+
+        var request = delete("/api/securityclearance/2");
+
+        mvc.perform(request)
+                .andExpect(status().isOk());
     }
 }

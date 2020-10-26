@@ -91,7 +91,6 @@ public class SecurityClearanceService {
     }
 
     private Result<SecurityClearance> validate(SecurityClearance securityClearance) {
-
         Result<SecurityClearance> result = new Result<>();
 
         if(securityClearance == null) {
@@ -100,7 +99,8 @@ public class SecurityClearanceService {
         }
 
         for(SecurityClearance iteratedClearance : findAll()) {
-            if(securityClearance.getName() == iteratedClearance.getName()
+            System.out.println("In the for loop!");
+            if(securityClearance.getName().equalsIgnoreCase(iteratedClearance.getName())
             && securityClearance != iteratedClearance) {
                 result.addMessage("SecurityClearance name must be unique", ResultType.INVALID);
                 return result;
