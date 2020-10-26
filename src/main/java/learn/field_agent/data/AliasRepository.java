@@ -7,6 +7,8 @@ import java.util.List;
 public interface AliasRepository {
     List<Alias> findAll();
 
+    List<Alias> findAllForAgent(int agentId);
+
     Alias findById(int aliasId);
 
     Alias add(Alias alias);

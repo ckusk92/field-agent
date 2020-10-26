@@ -28,10 +28,18 @@ public class AliasServiceTest {
             new Alias(3, "James Bond", "No explanation needed, spy extroardinaire", 3)
     );
 
+    List<Alias> allForOne = List.of(new Alias(1, "Captain Crunch", "Searches the seas for delicious cereal", 1));
+
     @Test
     void shouldGetAll() {
         when(repository.findAll()).thenReturn(all);
         assertEquals(3, service.findAll().size());
+    }
+
+    @Test
+    void shouldFindOneForAgentOne() {
+        when(repository.findAllForAgent(1)).thenReturn(allForOne);
+        assertEquals(1, service.findAllForAgent(1).size());
     }
 
     @Test
@@ -67,10 +75,10 @@ public class AliasServiceTest {
     }
 
     @Test
-    void shouldNotAddDuplicateName() {
+    void shouldNotAddDuplicateNameWithNoPersona() {
         when(repository.findAll()).thenReturn(all);
 
-        Alias alias = new Alias(1, "Captain Crunch", "Searches the seas for delicious cereal", 1);
+        Alias alias = new Alias(1, "Captain Crunch", "", 1);
 
         Result<Alias> actual = service.add(alias);
         assertEquals(ResultType.INVALID, actual.getType());

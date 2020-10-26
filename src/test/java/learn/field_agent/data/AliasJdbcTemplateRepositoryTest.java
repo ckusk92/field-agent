@@ -30,6 +30,13 @@ public class AliasJdbcTemplateRepositoryTest {
     }
 
     @Test
+    void shouldFindOneForAgentOne() {
+        List<Alias> agentOnesAliases = repository.findAllForAgent(1);
+        assertNotNull(agentOnesAliases);
+        assertEquals(1, agentOnesAliases.size());
+    }
+
+    @Test
     void shouldFindById() {
         Alias expected = new Alias(2, "Ray Mysterio", "Infamous masked wrestler", 2);
         Alias actual = repository.findById(2);

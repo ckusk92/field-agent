@@ -18,6 +18,8 @@ public class AliasService {
 
     public List<Alias> findAll() { return repository.findAll(); }
 
+    public List<Alias> findAllForAgent(int agentId) { return repository.findAllForAgent(agentId); }
+
     public Alias findById(int aliasId) { return repository.findById(aliasId); }
 
     public Result<Alias> add(Alias alias) {
@@ -75,7 +77,9 @@ public class AliasService {
         for(Alias iteratedAlias : findAll()) {
             if(alias.getName() == iteratedAlias.getName()
                     && alias != iteratedAlias) {
-                result.addMessage("Alias name must be unique", ResultType.INVALID);
+                if(Validations.isNullOrBlank(alias.getPersona())) {
+                    result.addMessage("Alias persona is required if names match", ResultType.INVALID);
+                }
                 return result;
             }
         }

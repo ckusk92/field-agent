@@ -42,14 +42,14 @@
 
 ### Aliases
 - [ ] Repository
-    - [ ] findAll (from agent perspective)
+    - [ ] findAll (From agent perspective)
         - [ ] test       
-    - [ ] add
-        - [ ] test
-    - [ ] update
-        - [ ] test
-    - [ ] delete
-        - [ ] test
+    - [x] add
+        - [x] test
+    - [x] update
+        - [x] test
+    - [x] delete
+        - [x] test
 - [ ] Domain
     - [ ] findAll
         - [ ] test
